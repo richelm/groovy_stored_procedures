@@ -1,6 +1,6 @@
 # Groovy Stored Procedures
 
-Making use of [Groovy Sql class](http://docs.groovy-lang.org/latest/html/api/groovy/sql/Sql.html) can make calling stored procedures much easier in a Java environment. This project provides use cases that can be expanding for CRUD in a JSF application.
+Making use of [Groovy Sql class](http://docs.groovy-lang.org/latest/html/api/groovy/sql/Sql.html) can make calling stored procedures much easier in a Java environment. This project provides use cases that can be expanding for CRUD in a JSF application. That was the motivation for this exercise. SAP (Sybase) ASE 15.7 was the DBMS for this project, but any DBMS that has stored procedures can be substituted.
 
 1. Stored procedure with input parameter(s) and return value.
 1. Stored procedure with input parameter(s), return value and one return parameter.
@@ -23,3 +23,7 @@ public List<GroovyRowResult> callWithRows(String sql,
                                  Closure closure)
                                    throws SQLException
 ```
+
+## References
+
+1. [Simpler Stored Procedures with Groovy](https://objectpartners.com/2014/01/24/simpler-stored-procedures-with-groovy/)
