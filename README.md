@@ -6,7 +6,7 @@ Making use of [Groovy Sql class](http://docs.groovy-lang.org/latest/html/api/gro
 1. Stored procedure with input parameter(s), return value and one return parameter.
 1. Stored procedure with input parameter(s), return value and one result set.
 
-For cases 1 and 2 we use method call with the following syntax:
+For cases 1 and 2 we use method **call** with the following syntax:
 
 ```
 public void call(String sql,
@@ -15,7 +15,7 @@ public void call(String sql,
           throws Exception
 ```
 
-For case 3  we use method call with the following syntax:
+For case 3  we use method **callWithRows** with the following syntax:
 
 ```
 public List<GroovyRowResult> callWithRows(String sql,
