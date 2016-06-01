@@ -1,0 +1,31 @@
+# compiled source
+# ---------------
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+#
+# backup files
+# ------------
+*.bak
+*.*!
+#
+# generated files
+# ---------------
+*.pdf
+#
+# directories
+# -----------
+build/
+dist/
+docs/
+web/data/
+web/WEB-INF/classes
+web/WEB-INF/lib
+#
+# individual files
+# ----------------
+web/WEB-INF/jetty-env.xml
+application.properties
