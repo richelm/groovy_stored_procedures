@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 
 import groovy.sql.Sql
+import groovy.sql.GroovyRowResult
 import groovy.json.*
 
 // define console for user input
@@ -50,3 +51,12 @@ sql.call(storedProcedureCall, params) {rv,ci ->
 }
 println("returnValue: ${returnValue}")
 println("colorIndex: ${colorIndex}")
+
+
+println("\nTesting stored procedure up_retrieve_employee")
+def empid = cons.readLine("Employee ID: ")
+
+storedProcedureCall = "execute up_retrieve_employee ?"
+params = [empid.toInteger()]
+def rows = sql.rows(storedProcedureCall, params)
+println rows.join('\n')
