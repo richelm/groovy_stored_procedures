@@ -27,3 +27,4 @@ public List<GroovyRowResult> callWithRows(String sql,
 ## References
 
 1. [Simpler Stored Procedures with Groovy](https://objectpartners.com/2014/01/24/simpler-stored-procedures-with-groovy/)
+1. [Groovy API Documentation](http://docs.groovy-lang.org/latest/html/gapi/)
