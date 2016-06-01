@@ -28,7 +28,7 @@ def params
 int returnValue
 int colorIndex
 
-println("Testing stored procedure up_raise_error")
+println("\nTesting stored procedure up_raise_error")
 def mynum = cons.readLine("myNum: ")
 
 storedProcedureCall = "{? = call up_raise_error(?)}"
@@ -39,7 +39,7 @@ sql.call(storedProcedureCall, params) {rv ->
 println("returnValue: ${returnValue}")
 
 
-println("Testing stored procedure up_multi_params")
+println("\nTesting stored procedure up_multi_params")
 def myColor = cons.readLine("myColor: ")
 
 storedProcedureCall = "{? = call up_multi_params(?,?)}"
