@@ -21,7 +21,7 @@ select
   @procedure_name = (select name from sysobjects where id = @@procid)
 
 select
-  @ret_value = 9
+  @ret_value = @employee_id
 
 select
   employee_id,
@@ -39,7 +39,7 @@ where
 select
   @error = @@error
 
-  if (@error != 1)
+  if (@error != 0)
     select @ret_value = @error
 
 
