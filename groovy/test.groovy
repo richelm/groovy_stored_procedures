@@ -7,7 +7,7 @@ def cons = System.console()
 
 // load server connection properties
 Properties props = new Properties()
-File propsFile = new File('./sqlserver.properties')
+File propsFile = new File('./sybase.properties')
 props.load(propsFile.newDataInputStream())
 String url = props.getProperty('url')
 String driver = props.getProperty('driver')
@@ -27,10 +27,16 @@ def mynum = cons.readLine("myNum: ")
 
 storedProcedureCall = "{? = call up_raise_error(?)}"
 params = [Sql.INTEGER,mynum.toInteger()]
-sql.call(storedProcedureCall, params) {rv ->
-  returnValue = rv
+
+try {
+  sql.call(storedProcedureCall, params) {rv ->
+    returnValue = rv
+  }
+  println("returnValue: ${returnValue}")
+} catch (Exception e) {
+  String errMessage = e.getMessage()
+  println errMessage
 }
-println("returnValue: ${returnValue}")
 
 
 println("\nTesting stored procedure up_multi_params")
