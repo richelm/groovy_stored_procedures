@@ -1,15 +1,13 @@
 #!/usr/bin/env groovy
 
 import groovy.sql.Sql
-import groovy.sql.GroovyRowResult
-import groovy.json.*
 
 // define console for user input
 def cons = System.console()
 
 // load server connection properties
 Properties props = new Properties()
-File propsFile = new File('./sybase.properties')
+File propsFile = new File('./sqlserver.properties')
 props.load(propsFile.newDataInputStream())
 String url = props.getProperty('url')
 String driver = props.getProperty('driver')
@@ -48,7 +46,7 @@ println("returnValue: ${returnValue}")
 println("colorIndex: ${colorIndex}")
 
 
-println("\nTesting stored procedure up_retrieve_employee")
+// println("\nTesting stored procedure up_retrieve_employee")
 def empid = cons.readLine("Employee ID: ")
 
 storedProcedureCall = "execute up_retrieve_employee ?"
