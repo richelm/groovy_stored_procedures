@@ -1,0 +1,16 @@
+# fill in properties for your DBMS accordingly
+
+# jConnect
+# url = jdbc:sybase:Tds:SERVER:PORT/DATABASE?CHARSET=cp850
+# driver = com.sybase.jdbc4.jdbc.SybDriver
+
+# jTDS 1.3.1
+# url = jdbc:jtds:sybase://SERVER-NAME:PORT/DATABASE;CHARSET=cp850
+#driver = net.sourceforge.jtds.jdbc.Driver
+
+# url = jdbc:jtds:sqlserver://SERVER:PORT
+# driver = net.sourceforge.jtds.jdbc.Driver
+
+url =
+driver =
+login =

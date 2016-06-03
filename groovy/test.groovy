@@ -9,20 +9,15 @@ def cons = System.console()
 
 // load server connection properties
 Properties props = new Properties()
-File propsFile = new File('./application.properties')
+File propsFile = new File('./sybase.properties')
 props.load(propsFile.newDataInputStream())
-String server = props.getProperty('server')
-String port = props.getProperty('port')
-String database = props.getProperty('database')
+String url = props.getProperty('url')
+String driver = props.getProperty('driver')
 String login = props.getProperty('login')
 
 def passwd = cons.readPassword("Password: ")
 
-sql = Sql.newInstance(
-	"jdbc:sybase:Tds:${server}:${port}/${database}?JCONNECT_VERSION=6&CHARSET=cp850",
-	"${login}",
-	"${passwd}",
-	"com.sybase.jdbc3.jdbc.SybDriver")
+sql = Sql.newInstance("${url}","${login}","${passwd}","${driver}")
 
 String storedProcedureCall
 def params

@@ -26,7 +26,7 @@ web/data/
 web/WEB-INF/classes
 web/WEB-INF/lib
 #
-# individual files
+# files that should not be in repo
 # ----------------
 web/WEB-INF/jetty-env.xml
-application.properties
+*.properties

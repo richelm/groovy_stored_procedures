@@ -1,27 +1,27 @@
+
 import groovy.sql.Sql
 
 // load server connection properties
 Properties props = new Properties()
-File propsFile = new File('./application.properties')
+File propsFile = new File('./sybase.properties')
 props.load(propsFile.newDataInputStream())
-String server = props.getProperty('server')
-String port = props.getProperty('port')
-String database = props.getProperty('database')
-String login = props.getProperty('login')
-String passwd = props.getProperty('passwd')
 
-// jConnect
-String url = "jdbc:sybase:Tds:${server}:${port}/${database}?CHARSET=cp850"
-String driver = "com.sybase.jdbc4.jdbc.SybDriver"
-// jTDS
-//String url = "jdbc:jtds:sybase://${server}:${port}/${database}?CHARSET=cp850"
-//String driver = "net.sourceforge.jtds.jdbc.Driver"
+String url = props.getProperty('url')
+String driver = props.getProperty('driver')
+String login = props.getProperty('login')
+
+println "Testing sp_who"
+println "url: ${url}"
+println "driver: ${driver}"
+
+def passwd = System.console().readPassword("Password: ")
+//String passwd = props.getProperty('passwd')
 
 sql = Sql.newInstance(
-	url,
-	"${login}",
-	"${passwd}",
-  driver)
+	"${url}",
+  "${login}",
+  "${passwd}",
+  "${driver}")
 
-def rowsList = sql.callWithAllRows("sp_who '32'",[],{})
+def rowsList = sql.callWithRows("sp_who",[],{})
 println rowsList.toString()

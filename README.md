@@ -24,6 +24,14 @@ public List<GroovyRowResult> callWithRows(String sql,
                                    throws SQLException
 ```
 
+Since **callWithRows** and **callWithAllRows** methods are not working, for case 3 we will use the following which works for our use cases.
+
+```
+public List<GroovyRowResult> rows(String sql,
+                         List<Object> params)
+                           throws SQLException
+```
+
 ## Problems
 
 Getting empty result set when using callWithAllRows. Found this: [JIRA: callWithAllRows result set is empty](http://mail-archives.apache.org/mod_mbox/groovy-notifications/201603.mbox/%3CJIRA.12944763.1456458509000.36835.1457466640893@Atlassian.JIRA%3E)
