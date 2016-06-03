@@ -78,3 +78,4 @@ This message was sent by Atlassian JIRA
 
 1. [Simpler Stored Procedures with Groovy](https://objectpartners.com/2014/01/24/simpler-stored-procedures-with-groovy/)
 1. [Groovy API Documentation](http://docs.groovy-lang.org/latest/html/gapi/)
+1. [Groovy](http://www.groovy-lang.org/)
