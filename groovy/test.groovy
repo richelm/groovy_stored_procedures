@@ -18,6 +18,7 @@ def passwd = cons.readPassword("Password: ")
 sql = Sql.newInstance("${url}","${login}","${passwd}","${driver}")
 
 String storedProcedureCall
+String selectStatement
 def params
 int returnValue
 int colorIndex
@@ -68,14 +69,44 @@ int colorIndex
 // println("colorIndex: ${colorIndex}")
 
 println("\nTesting stored procedure up_retrieve_employee")
-def empid = cons.readLine("Employee ID: ")
+def empid = cons.readLine("Employee ID: ").toInteger()
 
-storedProcedureCall = "execute ? = up_retrieve_employee ?"
-params = [Sql.INTEGER, empid.toInteger()]
-def rows = sql.execute(storedProcedureCall, params) {rv,rows ->
+storedProcedureCall = "{? = call up_retrieve_employee(?)}"
+selectStatement = "select * from employee where employee_id >= ?"
+// Object[] params = [Sql.INTEGER,empid.toInteger()] as Object[]
+params = [empid.toInteger()]
+def withRows = sql.callWithAllRows "{${Sql.INTEGER} = call up_retrieve_employee($empid)}", {rv ->
   returnValue = rv
-  println rows
 }
-//println returnValue
+println "-----------------------------------------------------------------------"
+println "sql.callWithRows"
+println withRows.getClass().getName()
+println withRows.size()
+
+println "-----------------------------------------------------------------------"
+println "sql.eachRow"
+sql.eachRow(selectStatement, params) {
+  def what = it.toRowResult().values()
+  println what.getClass().getName()
+  println it.toRowResult().values()
+}
+
+println "-----------------------------------------------------------------------"
+println "sql.rows"
+def rows = sql.rows(selectStatement, params)
+println rows.size()
+(0..rows.size()-1).each {
+  println rows[it].getClass().getName()
+  println rows[it]
+}
+
+// println "-----------------------------------------------------------------------"
+// println rows
+//
+// println "-----------------------------------------------------------------------"
+// println rows[0]
+// println "Found ${rows.size()} rows"
+// println rows.toRowResult().values()
+// println returnValue
 // println rows.join('\n')
-//println rows
+// println rows
