@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 
 import groovy.sql.Sql
+import groovy.sql.GroovyRowResult
 
 // define console for user input
 def cons = System.console()
@@ -22,6 +23,7 @@ String selectStatement
 def params
 int returnValue
 int colorIndex
+int rowCount
 
 // println("\nTesting stored procedure up_raise_error")
 // def mynum = cons.readLine("myNum: ")
@@ -99,6 +101,40 @@ println rows.size()
   println rows[it].getClass().getName()
   println rows[it]
 }
+
+println "-----------------------------------------------------------------------"
+println "sql.execute call...emplyee by id"
+storedProcedureCall = "{call up_retrieve_employee(?))}"
+params = [empid.toInteger()]
+rowCount = 0
+sql.execute(storedProcedureCall,params) { isResultSet, result ->
+  if (isResultSet) {
+    rows = result
+  }
+}
+// result is an ArrayList<GroovyRowResult>
+for (GroovyRowResult row : rows) {
+  row.keySet().each {column ->
+    println column + ": " + row[column]
+  }
+}
+
+
+println "-----------------------------------------------------------------------"
+println "sql.execute call...departments all"
+storedProcedureCall = "{call up_retrieve_all_department())}"
+params = []
+rowCount = 0
+sql.execute(storedProcedureCall,params) { isResultSet, result ->
+  if (isResultSet) {
+    rows = result
+  }
+}
+
+for (GroovyRowResult row : rows) {
+  println row
+}
+
 
 // println "-----------------------------------------------------------------------"
 // println rows
