@@ -103,37 +103,37 @@ println rows.size()
 }
 
 println "-----------------------------------------------------------------------"
-println "sql.execute call...emplyee by id"
-storedProcedureCall = "{call up_retrieve_employee(?))}"
-params = [empid.toInteger()]
-rowCount = 0
-sql.execute(storedProcedureCall,params) { isResultSet, result ->
-  if (isResultSet) {
-    rows = result
-  }
-}
-// result is an ArrayList<GroovyRowResult>
-for (GroovyRowResult row : rows) {
-  row.keySet().each {column ->
-    println column + ": " + row[column]
-  }
-}
+println "sql.execute call...retrieve all department"
+Map<String,Double> departments = new HashMap<String,Double>();
 
-
-println "-----------------------------------------------------------------------"
-println "sql.execute call...departments all"
 storedProcedureCall = "{call up_retrieve_all_department())}"
 params = []
 rowCount = 0
 sql.execute(storedProcedureCall,params) { isResultSet, result ->
   if (isResultSet) {
-    rows = result
+    for (GroovyRowResult row : result) {
+      departments.put(row["department_name"],row["department_id"])
+    }
   }
 }
 
-for (GroovyRowResult row : rows) {
-  println row
-}
+println departments
+
+// println "-----------------------------------------------------------------------"
+// println "sql.execute call...departments all"
+// storedProcedureCall = "{call up_retrieve_all_department())}"
+// params = []
+// rowCount = 0
+// sql.execute(storedProcedureCall,params) { isResultSet, result ->
+//   if (isResultSet) {
+//     rows = result
+//   }
+// }
+
+// for (GroovyRowResult row : rows) {
+//   println row
+// }
+
 
 
 // println "-----------------------------------------------------------------------"
